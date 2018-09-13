@@ -1,9 +1,18 @@
 .input {
   text-align: center;
   align-content: center;
+  vertical-align: middle;
   padding: 5px;
 }
 
-form {
-  display: flex;
+label {
+  display: block;
+  align-content: center;
+  padding: 5px;
+}
+
+input {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
 }
