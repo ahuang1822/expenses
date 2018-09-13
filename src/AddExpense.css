@@ -1,0 +1,9 @@
+.input {
+  text-align: center;
+  align-content: center;
+  padding: 5px;
+}
+
+form {
+  display: flex;
+}
