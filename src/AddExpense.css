@@ -5,6 +5,12 @@
   padding: 5px;
 }
 
+button {
+  align-content: center;
+  display: block;
+  margin: 0 auto;
+}
+
 label {
   display: block;
   align-content: center;
