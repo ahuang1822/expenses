@@ -5,6 +5,19 @@
   padding: 5px;
 }
 
+.everything {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 50%;
+}
+
+body {
+  background-color: beige;
+}
+
 button {
   align-content: center;
   display: block;
@@ -22,3 +35,4 @@ input {
   text-align: center;
   margin: 0 auto;
 }
+
