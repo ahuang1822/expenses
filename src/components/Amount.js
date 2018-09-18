@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
-import '../Amount.css';
+import '../ExpenseEntry.css';
 import { updateAmount } from '../store/expense'
 
 class Amount extends Component {

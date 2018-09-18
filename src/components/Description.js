@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
-import '../Description.css';
+import '../ExpenseEntry.css';
 import { updateDescription } from '../store/expense'
 
 class Description extends Component {
