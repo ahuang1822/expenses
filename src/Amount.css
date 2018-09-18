@@ -1,0 +1,38 @@
+.input {
+  text-align: center;
+  align-content: center;
+  vertical-align: middle;
+  padding: 5px;
+}
+
+.everything {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 50%;
+}
+
+body {
+  background-color: beige;
+}
+
+button {
+  align-content: center;
+  display: block;
+  margin: 0 auto;
+}
+
+label {
+  display: block;
+  align-content: center;
+  padding: 5px;
+}
+
+input {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}
+

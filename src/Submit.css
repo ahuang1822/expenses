@@ -1,0 +1,22 @@
+body {
+  background-color: beige;
+}
+
+.everything {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 40%;
+  height: 50%;
+}
+
+h3 {
+  text-align: center;
+}
+
+button {
+  align-content: center;
+  display: block;
+  margin: 0 auto;
+}

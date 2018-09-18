@@ -1,25 +1,30 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
-import '../Description.css';
-import { updateDescription } from '../store/expense'
+import '../Amount.css';
+import { updateAmount } from '../store/expense'
 
-class Description extends Component {
+class Amount extends Component {
   
+  goHome = (event) => {
+    event.preventDefault();
+    browserHistory.push('/');
+  }
+
   goBack = (event) => {
     event.preventDefault();
-    browserHistory.push('/category')
+    browserHistory.push('/description')
   }
 
   render() {
-    console.log('DESC: ', this.props.category);
+    console.log('PROPS: ', this.props);
     return (
       <div className="everything">
         <div className="input">
-          <form onSubmit={(event) => this.props.submitDescription(event)}>
+          <form onSubmit={(event) => this.props.submitAmount(event)}>
             <label>
-              Description:
-              <input type="text" name="description" />
+              Amount:
+              <input type="text" name="amount" />
             </label>
             <input type="submit" value="Submit" />
           </form>
@@ -34,17 +39,18 @@ class Description extends Component {
 
 const mapState = (state) => {
   return {
-    category: state.expense.category
+    category: state.expense.category,
+    description: state.expense.description
   }
 }
 
 const mapDispatch = (dispatch) => {
   return {
-    submitDescription(event) {
+    submitAmount(event) {
       event.preventDefault();
-      dispatch(updateDescription(event.target.description.value))
+      dispatch(updateAmount(event.target.amount.value))
     }
   }
 }
 
-export default connect(mapState, mapDispatch)(Description);
+export default connect(mapState, mapDispatch)(Amount);
