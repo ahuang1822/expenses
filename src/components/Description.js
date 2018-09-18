@@ -1,43 +1,44 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
-import './Category.css';
+import { connect } from 'react-redux';
+import '../Description.css';
 
-class Category extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      submittedCategory: false
-    }
-  }
-
+class Description extends Component {
+  
   handleSubmit = (event) => {
     event.preventDefault();
-    
   }
 
-  goHome = (event) => {
+  goBack = (event) => {
     event.preventDefault();
-    browserHistory.push('/')
+    browserHistory.push('/category')
   }
 
   render() {
-    return this.state.submittedCategory ? null : (
+    console.log('DESC: ', this.props.category);
+    return (
       <div className="everything">
         <div className="input">
           <form onSubmit={this.handleSubmit}>
             <label>
-              Category:
+              Description:
               <input type="text" name="category" />
             </label>
             <input type="submit" value="Submit" />
           </form>
         </div>
         <div className="home-button">
-          <button onClick={this.goHome}>Home</button>
+          <button onClick={this.goBack}>Back</button>
         </div>        
       </div>
     );
   }
 }
 
-export default Category;
+const mapState = (state) => {
+  return {
+    category: state.expense.category
+  }
+}
+
+export default connect(mapState, null)(Description);
