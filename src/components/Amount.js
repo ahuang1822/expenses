@@ -23,14 +23,16 @@ class Amount extends Component {
         <div className="input">
           <form onSubmit={(event) => this.props.submitAmount(event)}>
             <label>
-              Amount:
-              <input type="text" name="amount" />
+                <h5>
+                Amount:
+                </h5>              
+              <input className="form-control" type="text" name="amount" defaultValue={this.props.amount} />
             </label>
-            <input type="submit" value="Submit" />
+            <input className="btn btn-success" type="submit" value="Submit" />
           </form>
         </div>
         <div className="home-button">
-          <button onClick={this.goBack}>Back</button>
+          <button className="btn btn-dark" onClick={this.goBack}>Back</button>
         </div>        
       </div>
     );
@@ -40,7 +42,8 @@ class Amount extends Component {
 const mapState = (state) => {
   return {
     category: state.expense.category,
-    description: state.expense.description
+    description: state.expense.description,
+    amount: state.expense.amount
   }
 }
 

@@ -8,7 +8,7 @@ class Description extends Component {
   
   goBack = (event) => {
     event.preventDefault();
-    browserHistory.push('/category')
+    browserHistory.push('/category');
   }
 
   render() {
@@ -18,14 +18,16 @@ class Description extends Component {
         <div className="input">
           <form onSubmit={(event) => this.props.submitDescription(event)}>
             <label>
-              Description:
-              <input type="text" name="description" />
+              <h5>
+                Description:
+              </h5>
+              <input className="form-control" type="text" name="description" defaultValue={this.props.description} />
             </label>
-            <input type="submit" value="Submit" />
+            <input className="btn btn-success" type="submit" value="Submit" />
           </form>
         </div>
         <div className="home-button">
-          <button onClick={this.goBack}>Back</button>
+          <button className="btn btn-dark" onClick={this.goBack}>Back</button>
         </div>        
       </div>
     );
@@ -34,17 +36,18 @@ class Description extends Component {
 
 const mapState = (state) => {
   return {
-    category: state.expense.category
-  }
-}
+    category: state.expense.category,
+    description: state.expense.description
+  };
+};
 
 const mapDispatch = (dispatch) => {
   return {
     submitDescription(event) {
       event.preventDefault();
-      dispatch(updateDescription(event.target.description.value))
+      dispatch(updateDescription(event.target.description.value));
     }
-  }
+  };
 }
 
 export default connect(mapState, mapDispatch)(Description);

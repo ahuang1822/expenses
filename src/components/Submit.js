@@ -11,11 +11,11 @@ class Submit extends Component {
   render() {
     return (
       <div className='everything'>
-        <h3>
+        <h5>
           You need to lower your expenses
-        </h3>
+        </h5>
         <div className="home-button">
-          <button onClick={this.goHome}>Home</button>
+          <button className="btn btn-dark" onClick={this.goHome}>Home</button>
         </div>        
       </div>
     )

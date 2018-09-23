@@ -7,7 +7,7 @@ const UPDATE_AMOUNT = 'UPDATE_AMOUNT';
 const initialState = {
   category: '',
   description: '',
-  amount: 0
+  amount: ''
 };
 
 const addCategory = (category) => ({ type: UPDATE_CATEGORY, category});
@@ -16,22 +16,34 @@ const addAmount = (amount) => ({ type: UPDATE_AMOUNT, amount });
 
 export const updateCategory = (category) => {
   return function thunk (dispatch) {
-    dispatch(addCategory(category));
-    browserHistory.push('/description');
+    if (!category) {
+      alert('Please enter a category')
+    } else {
+      dispatch(addCategory(category));
+      browserHistory.push('/description');
+    }    
   }
 }
 
 export const updateDescription = (description) => {
   return function thunk (dispatch) {
-    dispatch(addDescription(description));
-    browserHistory.push('/amount');
+    if (!description) {
+      alert('Please enter a description')
+    } else {
+      dispatch(addDescription(description));
+      browserHistory.push('/amount'); 
+    }    
   }
 }
  
 export const updateAmount = (amount) => {
   return function thunk (dispatch) {
-    dispatch(addAmount(amount));
-    browserHistory.push('/confirmation');
+    if (!amount) {
+      alert('Please enter an amount')
+    } else {
+      dispatch(addAmount(amount));
+      browserHistory.push('/confirmation');
+    }    
   }
 }
 

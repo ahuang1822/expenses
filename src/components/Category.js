@@ -8,7 +8,7 @@ class Category extends Component {
   
   goHome = (event) => {
     event.preventDefault();
-    browserHistory.push('/');
+    browserHistory.push('/');    
   }
 
   render() {
@@ -18,14 +18,16 @@ class Category extends Component {
         <div className="input">
           <form onSubmit={(event) => this.props.submitCategory(event)}>
             <label>
-              Category:
-              <input type="text" name="category" />
+              <h5>
+                Category:
+              </h5>             
+              <input className="form-control" type="text" name="category" defaultValue={this.props.category} />
             </label>
-            <input type="submit" value="Submit" />
+            <input className="btn btn-success" type="submit" value="Submit" />
           </form>
         </div>
         <div className="home-button">
-          <button onClick={this.goHome}>Home</button>
+          <button className="btn btn-dark" onClick={this.goHome}>Home</button>
         </div>        
       </div>
     );

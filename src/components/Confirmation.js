@@ -27,13 +27,15 @@ class Confirmation extends Component {
         <div className="input">
           <form onSubmit={this.onSubmit}>
             <label>
+              <h5>
               Did you really just spend ${this.props.amount} on {this.props.description} ({this.props.category})?
+              </h5>
             </label>
-            <input type="submit" value="Yes" />
+            <input className="btn btn-success" type="submit" value="Yes" />
           </form>
         </div>
         <div className="home-button">
-          <button onClick={this.goBack}>Back</button>
+          <button className="btn btn-danger" onClick={this.goBack}>Back</button>
         </div>        
       </div>
     );
