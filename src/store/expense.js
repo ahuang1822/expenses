@@ -7,7 +7,7 @@ const UPDATE_AMOUNT = 'UPDATE_AMOUNT';
 const initialState = {
   category: '',
   description: '',
-  amount: ''
+  amount: "$"
 };
 
 const addCategory = (category) => ({ type: UPDATE_CATEGORY, category});
@@ -38,7 +38,7 @@ export const updateDescription = (description) => {
  
 export const updateAmount = (amount) => {
   return function thunk (dispatch) {
-    if (!amount) {
+    if (amount.length === 1) {
       alert('Please enter an amount')
     } else {
       dispatch(addAmount(amount));

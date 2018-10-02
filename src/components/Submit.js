@@ -6,6 +6,14 @@ class Submit extends Component {
   
   goHome(event) {
     event.preventDefault();
+    fetch('/express_backend')
+      .then((response) => response.json())
+      .then((responseJSON) => {
+        console.log(responseJSON);
+      })
+      .catch((error) => {
+        console.log(error);
+      })
     browserHistory.push('/')
   }
   render() {

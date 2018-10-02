@@ -17,7 +17,14 @@ class Confirmation extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
+    // updateGoogleSheet();
     browserHistory.push('/submit');
+  }
+
+  updateGoogleSheet = () => {
+    const sheetID = 
+      '1_ia6uzIWp_3sE8lfxfK9cc0n9VeokISWDiCLWQJTBjE';
+    
   }
 
   render() {
@@ -28,7 +35,7 @@ class Confirmation extends Component {
           <form onSubmit={this.onSubmit}>
             <label>
               <h5>
-              Did you really just spend ${this.props.amount} on {this.props.description} ({this.props.category})?
+              Did you really just spend {this.props.amount} on {this.props.description} ({this.props.category})?
               </h5>
             </label>
             <input className="btn btn-success" type="submit" value="Yes" />
@@ -51,3 +58,4 @@ const mapState = (state) => {
 }
 
 export default connect(mapState, null)(Confirmation);
+
