@@ -18,43 +18,15 @@ class Confirmation extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    axios.post('http://localhost:5000/googlesheets')
+    const expenseInformation = {
+      "category": this.props.category,
+      "description": this.props.description,
+      "amount": this.props.amount
+    };
+    axios.post('http://localhost:5000/googlesheets', expenseInformation)
     .then((response) => {
       console.log(response);
     })
-
-    // browserHistory.push('/submit');
-
-    // const GOOGLE_SHEETS_API_PREFIX = 
-    // 'https://sheets.googleapis.com/v4/spreadsheets/';
-    // const spreadsheetId = config.spreadsheetId;
-    // const range = 'Sheet1!A2:C2';
-    // const valueInputOption = 'USER_ENTERED'
-    // const category = this.props.category
-    // const description = this.props.description
-    // const amount = this.props.amount
-    
-    // axios.post(
-    //   GOOGLE_SHEETS_API_PREFIX + 
-    //   spreadsheetId +
-    //   '/values/' + 
-    //   range + '?' +
-    //   'valueInputOption=' +
-    //   valueInputOption + '?' +
-    //   'key=' + 
-    //   config.API_KEY, {
-    //     "range": range,
-    //     "values": [
-    //       [category, description, amount],
-    //     ]
-    //   }
-    // )
-    // .then((response) => {
-    //   console.log(response);
-    // })
-    // .catch((error) => {
-    //   console.log(error);
-    // })
   }
 
   render() {

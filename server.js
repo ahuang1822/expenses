@@ -8,20 +8,19 @@ const app = express();
 const port = process.env.PORT || 5000;
 const config = require('./src/config');
 
-app.listen(port, () => console.log(`Listening on port ${port}`));
-
 const corsOptions = {
   origin: 'http://localhost:3000'
 }
-
+app.use(express.json())
 app.use(cors(corsOptions))
+app.listen(port, () => console.log(`Listening on port ${port}`));
 
 app.get('/express_backend', (req, res) => {
   res.send({ express: 'YOUR EXPRESS BACKEND IS CONNECTED TO REACT' });
 });
 
 app.post('/googlesheets', (req, res) => {
-  console.log('spreadsheetID: ', config.spreadsheetId);
+  const { category, description, amount } = req.body;
   const GOOGLE_SHEET_ID = config.spreadsheetId;
   const SCOPES = ['https://www.googleapis.com/auth/spreadsheets'];
   const TOKEN_PATH = 'token.json';
@@ -87,12 +86,12 @@ app.post('/googlesheets', (req, res) => {
 
   function addExpense(oAuth2Client) {
     const request = {
-      spreadsheetId: '1_ia6uzIWp_3sE8lfxfK9cc0n9VeokISWDiCLWQJTBjE',
+      spreadsheetId: config.spreadsheetId,
       range: 'Sheet1!A1:C1', 
       valueInputOption: 'USER_ENTERED',   
       resource: {
         "values": [
-          ["Food", "Pizza", "$16"],
+          [category, description, amount],
         ]
       },
       auth: oAuth2Client,
