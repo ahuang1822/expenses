@@ -13,6 +13,7 @@ class Category extends Component {
 
   render() {
     console.log('CATEGORY: ', this.props.category)
+    console.log("SPREADSHEETID: ", this.props.spreadsheetId)
     return (
       <div className="everything">
         <div className="input">
@@ -37,6 +38,7 @@ class Category extends Component {
 const mapState = (state) => {
   return {
     category: state.expense.category,
+    spreadsheetId: state.expense.spreadsheetId
   }
 }
 

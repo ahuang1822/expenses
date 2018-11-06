@@ -3,16 +3,19 @@ import { browserHistory } from 'react-router';
 const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
 const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
 const UPDATE_AMOUNT = 'UPDATE_AMOUNT';
+const UPDATE_SPREADSHEETID = 'UPDATE_SPREADSHEETID';
 
 const initialState = {
   category: '',
   description: '',
-  amount: "$"
+  amount: "$",
+  spreadsheetId: '',
 };
 
 const addCategory = (category) => ({ type: UPDATE_CATEGORY, category});
 const addDescription = (description) => ({ type: UPDATE_DESCRIPTION, description});
 const addAmount = (amount) => ({ type: UPDATE_AMOUNT, amount });
+const setSpreadsheetId = (spreadsheetId) => ({ type: UPDATE_SPREADSHEETID, spreadsheetId });
 
 export const updateCategory = (category) => {
   return function thunk (dispatch) {
@@ -47,6 +50,13 @@ export const updateAmount = (amount) => {
   }
 }
 
+export const updateSpreadsheetId = (spreadsheetId) => {
+  return function thunk (dispatch) {
+    dispatch(setSpreadsheetId(spreadsheetId));
+    browserHistory.push('/category');
+  }
+}
+
 export default function reducer(state = initialState, action) {
   switch(action.type) {
     case UPDATE_CATEGORY:
@@ -55,6 +65,8 @@ export default function reducer(state = initialState, action) {
       return Object.assign({}, state, { description: action.description });
     case UPDATE_AMOUNT:
       return Object.assign({}, state, { amount: action.amount });
+    case UPDATE_SPREADSHEETID:
+    return Object.assign({}, state, { spreadsheetId: action.spreadsheetId });
     default:
       return state;
   }

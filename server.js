@@ -87,7 +87,7 @@ app.post('/googlesheets', (req, res) => {
   function addExpense(oAuth2Client) {
     const request = {
       spreadsheetId: config.spreadsheetId,
-      range: 'Sheet1!A1:C1', 
+      range: 'Sheet1', 
       valueInputOption: 'USER_ENTERED',   
       resource: {
         "values": [
@@ -96,8 +96,8 @@ app.post('/googlesheets', (req, res) => {
       },
       auth: oAuth2Client,
     };
-  
-    sheets.spreadsheets.values.update(request, function(err, response) {
+     
+    sheets.spreadsheets.values.append(request, function(err, response) {
       if (err) {
         console.error(err);
         return;

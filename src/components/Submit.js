@@ -14,7 +14,7 @@ class Submit extends Component {
         <h5>
           You need to lower your expenses
         </h5>
-        <div className="home-button">
+        <div className="home-button">          
           <button className="btn btn-dark" onClick={this.goHome}>Home</button>
         </div>        
       </div>

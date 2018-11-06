@@ -17,16 +17,24 @@ class Confirmation extends Component {
   }
 
   onSubmit = (event) => {
-    event.preventDefault();
-    const expenseInformation = {
-      "category": this.props.category,
-      "description": this.props.description,
-      "amount": this.props.amount
+    event.preventDefault();    
+    const category = this.props.category;
+    const description = this.props.description;
+    const amount = this.props.amount;
+    const spreadsheetId = this.props.spreadsheetId;
+    const body = {
+      values: [[category, description, amount]]
     };
-    axios.post('http://localhost:5000/googlesheets', expenseInformation)
-    .then((response) => {
-      console.log(response);
-    })
+    window.gapi.client.sheets.spreadsheets.values.append({
+      spreadsheetId: spreadsheetId,
+      range: 'Sheet1',
+      valueInputOption: 'USER_ENTERED',
+      resource: body
+   }).then(() => {
+       browserHistory.push('/');                        
+   }).catch((error) => {
+     console.log(error);
+   })
   }
 
   render() {
@@ -55,7 +63,8 @@ const mapState = (state) => {
   return {
     category: state.expense.category,
     description: state.expense.description,
-    amount: state.expense.amount
+    amount: state.expense.amount,
+    spreadsheetId: state.expense.spreadsheetId,
   }
 }
 
