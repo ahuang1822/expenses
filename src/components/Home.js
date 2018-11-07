@@ -62,18 +62,19 @@ class Home extends Component {
   };
 
   componentDidMount() {
-    var CLIENT_ID = config.CLIENT_ID;
-    var API_KEY = config.API_KEY;
+    let CLIENT_ID = config.CLIENT_ID;
+    let API_KEY = config.API_KEY;
 
     // Array of API discovery doc URLs for APIs used by the quickstart
-    var DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
+    let DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
 
     // Authorization scopes required by the API; multiple scopes can be
     // included, separated by spaces.
-    var SCOPES = "https://www.googleapis.com/auth/spreadsheets";
+    let SCOPES = "https://www.googleapis.com/auth/spreadsheets";
 
-    var authorizeButton = document.getElementById('authorize_button');
-    var signoutButton = document.getElementById('signout_button');
+    let authorizeButton = document.getElementById('authorize_button');
+    let signoutButton = document.getElementById('signout_button');
+    let addExpenseButton = document.getElementById('add_expense_button');
 
     /**
      *  On load, called to load the auth2 library and API client library.
@@ -111,9 +112,12 @@ class Home extends Component {
       if (isSignedIn) {
         authorizeButton.style.display = 'none';
         signoutButton.style.display = 'block';
+        addExpenseButton.style.display = 'block';
+
       } else {
         authorizeButton.style.display = 'block';
         signoutButton.style.display = 'none';
+        addExpenseButton.style.display = 'none';
       }
     }
 
@@ -138,8 +142,8 @@ class Home extends Component {
      * @param {string} message Text to be placed in pre element.
      */
     function appendPre(message) {
-      var pre = document.getElementById('content');
-      var textContent = document.createTextNode(message + '\n');
+      let pre = document.getElementById('content');
+      let textContent = document.createTextNode(message + '\n');
       pre.appendChild(textContent);
     }
 
@@ -159,7 +163,7 @@ class Home extends Component {
         <pre id="content"></pre>
         <button id="authorize_button" className="btn btn-success" style={{display: 'none'}}>Log In With Google</button>
         <button id="signout_button" className="btn btn-failure" style={{display: 'none'}}>Sign Out</button>
-        <button className="btn btn-success" onClick={this.onClick}>Add An Expense!</button>
+        <button id="add_expense_button" className="btn btn-success" style={{display: 'none'}} onClick={this.onClick}>Add An Expense!</button>
       </div>
     )
   }
@@ -170,6 +174,11 @@ const mapDispatch = (dispatch) => {
     setSpreadsheetId(spreadsheetId) {
       dispatch(updateSpreadsheetId(spreadsheetId));
     }
+  }
+}
+const mapState = (state) => {
+  return {
+    spreadsheetId: state.expense.spreadsheetId
   }
 }
 
