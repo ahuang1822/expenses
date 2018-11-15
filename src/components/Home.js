@@ -15,11 +15,11 @@ class Home extends Component {
 
   getSpreadsheetId = (listOfEmails, userEmail) => {
     for (let email of listOfEmails) {
-      if (email[0] === userEmail) {
+      if (email[0] === userEmail) {     
         return email[1];
-      }
-      return false;
+      };      
     };
+    return false;
   };
 
   onClick = (event) => {
@@ -58,7 +58,7 @@ class Home extends Component {
           });
         });
       };   
-    });   
+    });         
     browserHistory.push('/category');
   };
 
