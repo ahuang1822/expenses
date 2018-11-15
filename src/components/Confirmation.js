@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
-import axios from 'axios';
 import '../Confirmation.css';
 
 class Confirmation extends Component {
@@ -38,7 +37,6 @@ class Confirmation extends Component {
   }
 
   render() {
-    console.log('PROPS: ', this.props);
     return (
       <div className="everything">
         <div className="input">
@@ -56,8 +54,8 @@ class Confirmation extends Component {
         </div>        
       </div>
     );
-  }
-}
+  };
+};
 
 const mapState = (state) => {
   return {
@@ -66,7 +64,7 @@ const mapState = (state) => {
     amount: state.expense.amount,
     spreadsheetId: state.expense.spreadsheetId,
   }
-}
+};
 
 export default connect(mapState, null)(Confirmation);
 

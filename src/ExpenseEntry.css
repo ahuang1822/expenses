@@ -3,6 +3,8 @@
   align-content: center;
   vertical-align: middle;
   padding: 5px;
+  width: 40%;
+  margin: 0 auto;
 }
 
 .everything {
@@ -21,7 +23,7 @@ body {
 button.btn {
   align-content: center;
   display: block;
-  margin: 0 auto;
+  margin: 5px auto;
 }
 
 h5 {

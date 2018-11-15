@@ -18,11 +18,11 @@ body {
   background-color: whitesmoke;
 }
 
-button.btn {
+/* button.btn {
   align-content: center;
   display: block;
   margin: 0 auto;
-}
+} */
 
 label {
   display: block;

@@ -11,9 +11,12 @@ class Category extends Component {
     browserHistory.push('/');    
   }
 
+  onClick = (event) => {
+    event.preventDefault();
+    browserHistory.push('/');    
+  }
+
   render() {
-    console.log('CATEGORY: ', this.props.category)
-    console.log("SPREADSHEETID: ", this.props.spreadsheetId)
     return (
       <div className="everything">
         <div className="input">
@@ -21,7 +24,12 @@ class Category extends Component {
             <label>
               <h5>
                 Category:
-              </h5>             
+              </h5>        
+              <button className="btn btn-success" value="Food" onClick={(event) => this.props.submitCategory(event)}>Food</button>
+              <button className="btn btn-success" value="Transportation" onClick={(event) => this.props.submitCategory(event)}>Transportation</button>
+              <button className="btn btn-success" value="Rent" onClick={(event) => this.props.submitCategory(event)}>Rent</button>
+              <button className="btn btn-success" value="Utilities" onClick={(event) => this.props.submitCategory(event)}>Utilities</button>
+              <button className="btn btn-success" value="Clothing" onClick={(event) => this.props.submitCategory(event)}>Clothing</button>                            
               <input className="form-control" type="text" name="category" defaultValue={this.props.category} />
             </label>
             <input className="btn btn-success" type="submit" value="Submit" />
@@ -46,9 +54,10 @@ const mapDispatch = (dispatch) => {
   return {
     submitCategory(event) {
       event.preventDefault();
-      dispatch(updateCategory(event.target.category.value))
+      const category = event.target.value || event.target.category.value;
+      dispatch(updateCategory(category));
     }
-  }
-}
+  };
+};
 
 export default connect(mapState, mapDispatch)(Category);

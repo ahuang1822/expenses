@@ -12,7 +12,6 @@ class Description extends Component {
   }
 
   render() {
-    console.log('DESC: ', this.props.category);
     return (
       <div className="everything">
         <div className="input">

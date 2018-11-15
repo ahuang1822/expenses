@@ -17,7 +17,6 @@ class Amount extends Component {
   }
 
   render() {
-    console.log('PROPS: ', this.props);
     return (
       <div className="everything">
         <div className="input">
@@ -57,3 +56,5 @@ const mapDispatch = (dispatch) => {
 }
 
 export default connect(mapState, mapDispatch)(Amount);
+
+
