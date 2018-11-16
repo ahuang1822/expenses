@@ -1,9 +1,8 @@
-import { browserHistory } from 'react-router';
-
 const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
 const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
 const UPDATE_AMOUNT = 'UPDATE_AMOUNT';
 const UPDATE_SPREADSHEETID = 'UPDATE_SPREADSHEETID';
+const RESET_INPUT_FIELDS = 'RESET_INPUT_FIELDS';
 
 const initialState = {
   category: '',
@@ -16,46 +15,49 @@ const addCategory = (category) => ({ type: UPDATE_CATEGORY, category});
 const addDescription = (description) => ({ type: UPDATE_DESCRIPTION, description});
 const addAmount = (amount) => ({ type: UPDATE_AMOUNT, amount });
 const setSpreadsheetId = (spreadsheetId) => ({ type: UPDATE_SPREADSHEETID, spreadsheetId });
+const clearInputFields = () => ({ type: RESET_INPUT_FIELDS });
 
 export const updateCategory = (category) => {
   return function thunk (dispatch) {
     if (!category) {
       alert('Please enter a category')
     } else {
-      dispatch(addCategory(category));
-      browserHistory.push('/description');
-    }    
-  }
-}
+      dispatch(addCategory(category));      
+    };    
+  };
+};
 
 export const updateDescription = (description) => {
   return function thunk (dispatch) {
     if (!description) {
       alert('Please enter a description')
     } else {
-      dispatch(addDescription(description));
-      browserHistory.push('/amount'); 
-    }    
-  }
-}
+      dispatch(addDescription(description));      
+    };    
+  };
+};
  
 export const updateAmount = (amount) => {
   return function thunk (dispatch) {
     if (amount.length === 1) {
       alert('Please enter an amount')
     } else {
-      dispatch(addAmount(amount));
-      browserHistory.push('/confirmation');
-    }    
-  }
-}
+      dispatch(addAmount(amount));      
+    };    
+  };
+};
 
 export const updateSpreadsheetId = (spreadsheetId) => {
   return function thunk (dispatch) {
-    dispatch(setSpreadsheetId(spreadsheetId));
-    browserHistory.push('/category');
-  }
-}
+    dispatch(setSpreadsheetId(spreadsheetId));    
+  };
+};
+
+export const resetInputFields = () => {
+  return function thunk (dispatch) {
+    dispatch(clearInputFields());    
+  };
+};
 
 export default function reducer(state = initialState, action) {
   switch(action.type) {
@@ -66,7 +68,9 @@ export default function reducer(state = initialState, action) {
     case UPDATE_AMOUNT:
       return Object.assign({}, state, { amount: action.amount });
     case UPDATE_SPREADSHEETID:
-    return Object.assign({}, state, { spreadsheetId: action.spreadsheetId });
+      return Object.assign({}, state, { spreadsheetId: action.spreadsheetId });
+    case RESET_INPUT_FIELDS:
+      return Object.assign({}, state, { category: '', description: '', amount: '$' });
     default:
       return state;
   }

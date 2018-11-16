@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import '../Confirmation.css';
+import { resetInputFields } from '../store/expense'
 
 class Confirmation extends Component {
   
@@ -29,8 +30,9 @@ class Confirmation extends Component {
       range: 'Sheet1',
       valueInputOption: 'USER_ENTERED',
       resource: body
-   }).then(() => {
-       browserHistory.push('/');                        
+   }).then(() => {      
+      this.props.clearInputFields();  
+      browserHistory.push('/');          
    }).catch((error) => {
      console.log(error);
    })
@@ -66,5 +68,13 @@ const mapState = (state) => {
   }
 };
 
-export default connect(mapState, null)(Confirmation);
+const mapDispatch = (dispatch) => {
+  return {
+    clearInputFields() {     
+      dispatch(resetInputFields());      
+    }
+  };
+};
+
+export default connect(mapState, mapDispatch)(Confirmation);
 

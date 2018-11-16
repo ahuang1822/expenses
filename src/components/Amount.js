@@ -12,15 +12,21 @@ class Amount extends Component {
   }
 
   goBack = (event) => {
+    event.preventDefault();    
+    browserHistory.push('/description');
+  }
+
+  onSubmit = (event) => {
     event.preventDefault();
-    browserHistory.push('/description')
+    this.props.submitAmount(event.target.amount.value);
+    browserHistory.push('/confirmation');
   }
 
   render() {
     return (
       <div className="everything">
         <div className="input">
-          <form onSubmit={(event) => this.props.submitAmount(event)}>
+          <form onSubmit={this.onSubmit}>
             <label>
                 <h5>
                 Amount:
@@ -48,12 +54,11 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    submitAmount(event) {
-      event.preventDefault();
-      dispatch(updateAmount(event.target.amount.value))
+    submitAmount(amount) {
+      dispatch(updateAmount(amount))
     }
-  }
-}
+  };
+};
 
 export default connect(mapState, mapDispatch)(Amount);
 

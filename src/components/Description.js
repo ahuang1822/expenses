@@ -11,11 +11,17 @@ class Description extends Component {
     browserHistory.push('/category');
   }
 
+  onSubmit = (event) => {
+    event.preventDefault();
+    this.props.submitDescription(event.target.description.value);
+    browserHistory.push('/amount'); 
+  }
+
   render() {
     return (
       <div className="everything">
         <div className="input">
-          <form onSubmit={(event) => this.props.submitDescription(event)}>
+          <form onSubmit={this.onSubmit}>
             <label>
               <h5>
                 Description:
@@ -42,9 +48,8 @@ const mapState = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    submitDescription(event) {
-      event.preventDefault();
-      dispatch(updateDescription(event.target.description.value));
+    submitDescription(description) {
+      dispatch(updateDescription(description));
     }
   };
 }

@@ -35,6 +35,7 @@ class Home extends Component {
       let spreadsheetId = this.getSpreadsheetId(listOfEmails, userEmail);
       if (spreadsheetId) {
         this.props.setSpreadsheetId(spreadsheetId);
+        browserHistory.push('/category');
       } else {
         window.gapi.client.sheets.spreadsheets.create({
           properties: {
@@ -145,3 +146,4 @@ const mapState = (state) => {
 }
 
 export default connect(null, mapDispatch)(Home);
+
