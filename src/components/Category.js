@@ -14,8 +14,7 @@ class Category extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     const category = event.target.value || event.target.category.value;
-    this.props.submitCategory(category);
-    browserHistory.push('/description');
+    this.props.submitCategory(category);    
   }
 
   render() {
@@ -27,11 +26,8 @@ class Category extends Component {
               <h5>
                 Category:
               </h5>        
-              <button className="btn btn-success" value="Food" onClick={this.onSubmit}>Food</button>
-              <button className="btn btn-success" value="Transportation" onClick={this.onSubmit}>Transportation</button>
-              <button className="btn btn-success" value="Rent" onClick={this.onSubmit}>Rent</button>
-              <button className="btn btn-success" value="Utilities" onClick={this.onSubmit}>Utilities</button>
-              <button className="btn btn-success" value="Clothing" onClick={this.onSubmit}>Clothing</button>                            
+              <button className="btn btn-warning" value="Food" onClick={this.onSubmit}>Food</button>
+              <button className="btn btn-warning" value="Transportation" onClick={this.onSubmit}>Transportation</button>
               <input className="form-control" type="text" name="category" defaultValue={this.props.category} />
             </label>
             <input className="btn btn-success" type="submit" value="Submit" />

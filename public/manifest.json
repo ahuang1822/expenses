@@ -1,6 +1,6 @@
 {
   "short_name": "Expenses",
-  "name": "What's not in your wallet?",
+  "name": "where did my money go?",
   "icons": [
     {
       "src":"money-icon.png",
@@ -8,7 +8,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/?utm_source=homescreen",
+  "start_url": "/",
   "background_color": "#222",
   "theme_color": "#222",
   "display": "standalone"

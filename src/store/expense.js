@@ -1,3 +1,5 @@
+import { browserHistory } from 'react-router';
+
 const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
 const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
 const UPDATE_AMOUNT = 'UPDATE_AMOUNT';
@@ -22,7 +24,8 @@ export const updateCategory = (category) => {
     if (!category) {
       alert('Please enter a category')
     } else {
-      dispatch(addCategory(category));      
+      dispatch(addCategory(category));  
+      browserHistory.push('/description');    
     };    
   };
 };
@@ -32,7 +35,8 @@ export const updateDescription = (description) => {
     if (!description) {
       alert('Please enter a description')
     } else {
-      dispatch(addDescription(description));      
+      dispatch(addDescription(description));   
+      browserHistory.push('/amount');    
     };    
   };
 };
@@ -42,7 +46,8 @@ export const updateAmount = (amount) => {
     if (amount.length === 1) {
       alert('Please enter an amount')
     } else {
-      dispatch(addAmount(amount));      
+      dispatch(addAmount(amount)); 
+      browserHistory.push('/confirmation');     
     };    
   };
 };

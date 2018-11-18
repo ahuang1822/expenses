@@ -71,6 +71,7 @@ class Home extends Component {
     const authorizeButton = document.getElementById('authorize_button');
     const signoutButton = document.getElementById('signout_button');
     const addExpenseButton = document.getElementById('add_expense_button');
+    const loadingText = document.getElementById('loading');
 
     const handleClientLoad = () => {
       window.gapi.load('client:auth2', initClient);
@@ -100,6 +101,7 @@ class Home extends Component {
         signoutButton.style.display = 'none';
         addExpenseButton.style.display = 'none';
       };
+      loadingText.style.display = 'none';
     };
 
     const handleAuthClick = (event) => {
@@ -124,9 +126,10 @@ class Home extends Component {
           Keep Track of Your Money!
         </p>
         <pre id="content"></pre>
+        <p id="loading">Loading...</p>
         <button id="authorize_button" className="btn btn-success" style={{display: 'none'}}>Log In With Google</button>
         <button id="signout_button" className="btn btn-failure" style={{display: 'none'}}>Sign Out</button>
-        <button id="add_expense_button" className="btn btn-success" onClick={this.onClick}>Add An Expense!</button>
+        <button id="add_expense_button" className="btn btn-success" style={{display: 'none'}} onClick={this.onClick}>Add An Expense!</button>        
       </div>
     )
   }

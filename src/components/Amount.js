@@ -18,8 +18,7 @@ class Amount extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.submitAmount(event.target.amount.value);
-    browserHistory.push('/confirmation');
+    this.props.submitAmount(event.target.amount.value);    
   }
 
   render() {
@@ -31,7 +30,7 @@ class Amount extends Component {
                 <h5>
                 Amount:
                 </h5>              
-              <input className="form-control" type="text" name="amount" defaultValue={this.props.amount} />
+              <input className="form-control" type="number" min="0.00" max="10000.00" step="0.01" />
             </label>
             <input className="btn btn-success" type="submit" value="Submit" />
           </form>
