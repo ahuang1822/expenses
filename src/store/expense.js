@@ -9,7 +9,7 @@ const RESET_INPUT_FIELDS = 'RESET_INPUT_FIELDS';
 const initialState = {
   category: '',
   description: '',
-  amount: "$",
+  amount: "",
   spreadsheetId: '',
 };
 
@@ -21,34 +21,19 @@ const clearInputFields = () => ({ type: RESET_INPUT_FIELDS });
 
 export const updateCategory = (category) => {
   return function thunk (dispatch) {
-    if (!category) {
-      alert('Please enter a category')
-    } else {
-      dispatch(addCategory(category));  
-      browserHistory.push('/description');    
-    };    
+    dispatch(addCategory(category));  
   };
 };
 
 export const updateDescription = (description) => {
   return function thunk (dispatch) {
-    if (!description) {
-      alert('Please enter a description')
-    } else {
-      dispatch(addDescription(description));   
-      browserHistory.push('/amount');    
-    };    
-  };
+    dispatch(addDescription(description));          
+  };    
 };
  
 export const updateAmount = (amount) => {
   return function thunk (dispatch) {
-    if (amount.length === 1) {
-      alert('Please enter an amount')
-    } else {
-      dispatch(addAmount(amount)); 
-      browserHistory.push('/confirmation');     
-    };    
+    dispatch(addAmount(amount)); 
   };
 };
 

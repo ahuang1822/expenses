@@ -12,13 +12,19 @@ class Amount extends Component {
   }
 
   goBack = (event) => {
-    event.preventDefault();    
+    event.preventDefault();        
     browserHistory.push('/description');
   }
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.submitAmount(event.target.amount.value);    
+    const amount = event.target.amount.value;
+    if (!amount) {
+      alert('Please enter an amount');
+    } else {
+      this.props.submitAmount(event.target.amount.value);    
+      browserHistory.push('/confirmation'); 
+    };    
   }
 
   render() {
@@ -30,7 +36,14 @@ class Amount extends Component {
                 <h5>
                 Amount:
                 </h5>              
-              <input className="form-control" type="number" min="0.00" max="10000.00" step="0.01" />
+              <input 
+                className="form-control" t
+                ype="number" 
+                min="0.00" 
+                max="10000.00" 
+                step="0.01"  
+                name="amount"
+                defaultValue={this.props.amount} />
             </label>
             <input className="btn btn-success" type="submit" value="Submit" />
           </form>

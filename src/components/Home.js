@@ -120,7 +120,7 @@ class Home extends Component {
       <div className="App">
         <div className="App-header">
           <img src={money} className="App-logo" alt="logo" />
-          <h2>Home</h2>
+          <h2>Welcome</h2>
         </div>
         <p className="App-intro">
           Keep Track of Your Money!

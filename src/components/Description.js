@@ -13,8 +13,14 @@ class Description extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();
-    this.props.submitDescription(event.target.description.value);    
-  }
+    const description = event.target.description.value;
+    if (!description) {
+      alert('Please enter a description')
+    } else {
+      this.props.submitDescription(description);    
+      browserHistory.push('/amount');   
+    };    
+  };
 
   render() {
     return (
