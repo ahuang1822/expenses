@@ -28,10 +28,12 @@ button.btn {
 
 h5 {
   margin: 2.5px;
-  /* font-family: Lato; */
 }
 
 input {
   text-align: center;
 }
 
+#spreadsheet-link {
+  display: none;
+}

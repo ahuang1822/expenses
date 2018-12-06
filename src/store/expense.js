@@ -1,5 +1,3 @@
-import { browserHistory } from 'react-router';
-
 const UPDATE_CATEGORY = 'UPDATE_CATEGORY';
 const UPDATE_DESCRIPTION = 'UPDATE_DESCRIPTION';
 const UPDATE_AMOUNT = 'UPDATE_AMOUNT';

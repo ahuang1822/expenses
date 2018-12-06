@@ -4,6 +4,7 @@ import { browserHistory } from 'react-router';
 import money from '../money-bag.png';
 import config from '../config'
 import { updateSpreadsheetId } from '../store/expense';
+import { showSpreadsheetId } from '../Utils/functions';
 
 class Home extends Component {
   constructor(props) {
@@ -13,55 +14,7 @@ class Home extends Component {
     };
   };
 
-  getSpreadsheetId = (listOfEmails, userEmail) => {
-    for (let email of listOfEmails) {
-      if (email[0] === userEmail) {     
-        return email[1];
-      };      
-    };
-    return false;
-  };
-
-  onClick = (event) => {
-    event.preventDefault();
-    let userEmail = 
-      window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getEmail();
-    
-    window.gapi.client.sheets.spreadsheets.values.get({
-      spreadsheetId: config.spreadsheetId,
-      range: 'Sheet1'
-    }).then((response) => {
-      const listOfEmails = response.result.values;
-      let spreadsheetId = this.getSpreadsheetId(listOfEmails, userEmail);
-      if (spreadsheetId) {
-        this.props.setSpreadsheetId(spreadsheetId);
-        browserHistory.push('/category');
-      } else {
-        window.gapi.client.sheets.spreadsheets.create({
-          properties: {
-            title: 'Where did my money go?'
-          }
-        }).then((response) => {
-          spreadsheetId = response.result.spreadsheetId;
-          const values = [
-            [userEmail, spreadsheetId]
-          ];
-          const body = {
-            values: values
-          };
-          window.gapi.client.sheets.spreadsheets.values.append({
-             spreadsheetId: config.spreadsheetId,
-             range: 'Sheet1',
-             valueInputOption: 'USER_ENTERED',
-             resource: body
-          }).then(() => {
-              this.props.setSpreadsheetId(spreadsheetId);                        
-          });
-        });
-      };   
-    });         
-    browserHistory.push('/category');
-  };
+  
 
   componentDidMount() {
     const CLIENT_ID = config.CLIENT_ID;
@@ -72,9 +25,10 @@ class Home extends Component {
     const signoutButton = document.getElementById('signout_button');
     const addExpenseButton = document.getElementById('add_expense_button');
     const loadingText = document.getElementById('loading');
+    const spreadsheetLink = document.getElementById('spreadsheet-link');
 
     const handleClientLoad = () => {
-      window.gapi.load('client:auth2', initClient);
+      window.gapi.load('client:auth2', initClient);      
     }
 
     const initClient = () => {
@@ -93,26 +47,28 @@ class Home extends Component {
 
     const updateSigninStatus = (isSignedIn) => {
       if (isSignedIn) {
+        showSpreadsheetId(spreadsheetLink);
         authorizeButton.style.display = 'none';
         signoutButton.style.display = 'block';
-        addExpenseButton.style.display = 'block';
+        addExpenseButton.style.display = 'block';               
       } else {
         authorizeButton.style.display = 'block';
         signoutButton.style.display = 'none';
         addExpenseButton.style.display = 'none';
+        spreadsheetLink.style.display = 'none';
       };
       loadingText.style.display = 'none';
     };
 
-    const handleAuthClick = (event) => {
-      window.gapi.auth2.getAuthInstance().signIn();
+    const handleAuthClick = () => {
+      window.gapi.auth2.getAuthInstance().signIn();      
     }
 
-    const handleSignoutClick = (event) => {
+    const handleSignoutClick = () => {
       window.gapi.auth2.getAuthInstance().signOut();
     }
 
-    handleClientLoad();
+    handleClientLoad();    
   }
 
   render() {
@@ -130,6 +86,7 @@ class Home extends Component {
         <button id="authorize_button" className="btn btn-success" style={{display: 'none'}}>Log In With Google</button>
         <button id="signout_button" className="btn btn-failure" style={{display: 'none'}}>Sign Out</button>
         <button id="add_expense_button" className="btn btn-success" style={{display: 'none'}} onClick={this.onClick}>Add An Expense!</button>        
+        <a id='spreadsheet-link'>Check out your spreadsheet here!</a>
       </div>
     )
   }
@@ -140,13 +97,13 @@ const mapDispatch = (dispatch) => {
     setSpreadsheetId(spreadsheetId) {
       dispatch(updateSpreadsheetId(spreadsheetId));
     }
-  }
-}
+  };
+};
 const mapState = (state) => {
   return {
     spreadsheetId: state.expense.spreadsheetId
   }
 }
 
-export default connect(null, mapDispatch)(Home);
+export default connect(mapState, mapDispatch)(Home);
 
