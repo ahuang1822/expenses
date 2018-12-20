@@ -18,12 +18,11 @@ class Confirmation extends Component {
 
   onSubmit = (event) => {
     event.preventDefault();    
-    const category = this.props.category;
     const description = this.props.description;
     const amount = this.props.amount;
     const spreadsheetId = this.props.spreadsheetId;
     const body = {
-      values: [[category, description, amount]]
+      values: [[description, amount]]
     };
     window.gapi.client.sheets.spreadsheets.values.append({
       spreadsheetId: spreadsheetId,
@@ -45,7 +44,7 @@ class Confirmation extends Component {
           <form onSubmit={this.onSubmit}>
             <label>
               <h5>
-              Did you really just spend {this.props.amount} on {this.props.description} ({this.props.category})?
+              Did you really just spend ${this.props.amount} on {this.props.description}?
               </h5>
             </label>
             <input className="btn btn-success" type="submit" value="Yes" />
@@ -61,7 +60,6 @@ class Confirmation extends Component {
 
 const mapState = (state) => {
   return {
-    category: state.expense.category,
     description: state.expense.description,
     amount: state.expense.amount,
     spreadsheetId: state.expense.spreadsheetId,

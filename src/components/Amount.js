@@ -37,8 +37,8 @@ class Amount extends Component {
                 Amount:
                 </h5>              
               <input 
-                className="form-control" t
-                ype="number" 
+                className="form-control"
+                type="number" 
                 min="0.00" 
                 max="10000.00" 
                 step="0.01"  
@@ -58,7 +58,6 @@ class Amount extends Component {
 
 const mapState = (state) => {
   return {
-    category: state.expense.category,
     description: state.expense.description,
     amount: state.expense.amount
   }

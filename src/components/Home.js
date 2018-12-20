@@ -4,7 +4,7 @@ import { browserHistory } from 'react-router';
 import money from '../money-bag.png';
 import config from '../config'
 import { updateSpreadsheetId } from '../store/expense';
-import { showSpreadsheetId } from '../Utils/functions';
+import { getSpreadsheetId } from '../Utils/functions';
 
 class Home extends Component {
   constructor(props) {
@@ -14,18 +14,23 @@ class Home extends Component {
     };
   };
 
-  
+  onClick = (event) => {
+    event.preventDefault();
+    browserHistory.push('/description');
+  }
 
   componentDidMount() {
     const CLIENT_ID = config.CLIENT_ID;
     const API_KEY = config.API_KEY;
     const DISCOVERY_DOCS = ["https://sheets.googleapis.com/$discovery/rest?version=v4"];
     const SCOPES = "https://www.googleapis.com/auth/spreadsheets";
+    const SPREADSHEET_LINK_PREFIX = 'https://docs.google.com/spreadsheets/d/'    
     const authorizeButton = document.getElementById('authorize_button');
     const signoutButton = document.getElementById('signout_button');
     const addExpenseButton = document.getElementById('add_expense_button');
     const loadingText = document.getElementById('loading');
     const spreadsheetLink = document.getElementById('spreadsheet-link');
+    const welcomeMessage = document.getElementById('welcome-message');
 
     const handleClientLoad = () => {
       window.gapi.load('client:auth2', initClient);      
@@ -45,9 +50,15 @@ class Home extends Component {
       });
     }
 
-    const updateSigninStatus = (isSignedIn) => {
+    const updateSigninStatus = async (isSignedIn) => {
       if (isSignedIn) {
-        showSpreadsheetId(spreadsheetLink);
+        const spreadsheetId = await getSpreadsheetId();        
+        this.props.setSpreadsheetId(spreadsheetId);
+        const userName = 
+          window.gapi.auth2.getAuthInstance().currentUser.get().getBasicProfile().getGivenName();
+        spreadsheetLink.href = SPREADSHEET_LINK_PREFIX + spreadsheetId.spreadsheetId;
+        welcomeMessage.innerText = `Welcome ${userName}`
+        spreadsheetLink.style.display = 'block';
         authorizeButton.style.display = 'none';
         signoutButton.style.display = 'block';
         addExpenseButton.style.display = 'block';               
@@ -56,6 +67,7 @@ class Home extends Component {
         signoutButton.style.display = 'none';
         addExpenseButton.style.display = 'none';
         spreadsheetLink.style.display = 'none';
+        welcomeMessage.innerText = 'Welcome';
       };
       loadingText.style.display = 'none';
     };
@@ -76,7 +88,7 @@ class Home extends Component {
       <div className="App">
         <div className="App-header">
           <img src={money} className="App-logo" alt="logo" />
-          <h2>Welcome</h2>
+          <h2 id='welcome-message'>Welcome</h2>
         </div>
         <p className="App-intro">
           Keep Track of Your Money!

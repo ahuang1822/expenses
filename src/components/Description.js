@@ -8,7 +8,7 @@ class Description extends Component {
   
   goBack = (event) => {
     event.preventDefault();
-    browserHistory.push('/category');
+    browserHistory.push('/');
   }
 
   onSubmit = (event) => {
@@ -46,7 +46,6 @@ class Description extends Component {
 
 const mapState = (state) => {
   return {
-    category: state.expense.category,
     description: state.expense.description
   };
 };
