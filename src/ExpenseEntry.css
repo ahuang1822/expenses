@@ -1,18 +1,18 @@
+.everything {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+  height: 50%;
+} 
+
 .input {
   text-align: center;
   align-content: center;
   vertical-align: middle;
   width: 190px;
   margin: 0 auto;  
-}
-
-.everything {
-  position: relative;
-  left: 50%;
-  top: 20%;
-  transform: translate(-50%, -70%);
-  width: 40%;
-  height: 50%;
 }
 
 body {
@@ -28,6 +28,7 @@ button.btn {
 
 h5 {
   margin: 2.5px;
+  text-align: center;
 }
 
 input {
@@ -37,3 +38,5 @@ input {
 #spreadsheet-link {
   display: none;
 }
+
+

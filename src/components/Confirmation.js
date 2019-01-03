@@ -19,8 +19,8 @@ class Confirmation extends Component {
   onSubmit = (event) => {
     event.preventDefault();    
     const description = this.props.description;
-    const amount = this.props.amount;
-    const spreadsheetId = this.props.spreadsheetId;
+    const amount = '$' + this.props.amount;
+    const spreadsheetId = this.props.spreadsheetId;    
     const body = {
       values: [[description, amount]]
     };

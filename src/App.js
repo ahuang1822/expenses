@@ -5,7 +5,6 @@ import Home from './components/Home';
 import Description from './components/Description';
 import Amount from './components/Amount';
 import Confirmation from './components/Confirmation';
-import Submit from './components/Submit';
 
 class App extends Component {
   render() {
@@ -15,7 +14,6 @@ class App extends Component {
         <Route path="/description" component={Description}/>
         <Route path="/amount" component={Amount}/>
         <Route path="/confirmation" component={Confirmation}/>
-        <Route path="/submit" component={Submit}/>
       </Router>
     );
   }
