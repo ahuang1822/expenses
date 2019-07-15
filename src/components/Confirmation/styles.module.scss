@@ -1,0 +1,29 @@
+.confirmation {
+  height: 50%;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+}
+
+.formMessage {
+  display: block;
+  align-content: center;
+  padding: 5px;
+}
+
+.btn {
+  align-content: center;
+  display: block;
+  margin: 5px auto;
+  padding: auto;
+}
+
+.input {
+  align-content: center;
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+  width: 190px;
+}

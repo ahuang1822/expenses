@@ -1,21 +1,21 @@
 import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
-import '../Confirmation.css';
-import { resetInputFields } from '../store/expense';
+import styles from './styles.module.scss';
+import { resetInputFields } from 'store/expense';
 
-class Confirmation extends Component {
-  goHome = event => {
+const Confirmation = () => {
+  const goHome = event => {
     event.preventDefault();
     browserHistory.push('/');
   };
 
-  goBack = event => {
+  const goBack = event => {
     event.preventDefault();
     browserHistory.push('/description');
   };
 
-  onSubmit = event => {
+  const onSubmit = event => {
     event.preventDefault();
     const description = this.props.description;
     const amount = '$' + this.props.amount;
@@ -39,29 +39,31 @@ class Confirmation extends Component {
       });
   };
 
-  render() {
-    return (
-      <div className="everything">
-        <div className="input">
-          <form onSubmit={this.onSubmit}>
-            <label>
-              <h5>
-                Please confirm your expense of ${this.props.amount} on{' '}
-                {this.props.description}?
-              </h5>
-            </label>
-            <input className="btn btn-success" type="submit" value="Yes" />
-          </form>
-        </div>
-        <div className="home-button">
-          <button className="btn btn-danger" onClick={this.goBack}>
-            Back
-          </button>
-        </div>
+  return (
+    <div className={styles.confirmationContainer}>
+      <div className={styles.input}>
+        <form onSubmit={onSubmit}>
+          <label className={styles.formMessage}>
+            <h5>
+              Please confirm your expense of ${this.props.amount} on{' '}
+              {this.props.description}?
+            </h5>
+          </label>
+          <input
+            className={`${styles.btn} btn-success`}
+            type="submit"
+            value="Yes"
+          />
+        </form>
       </div>
-    );
-  }
-}
+      <div className="home-button">
+        <button className={`${styles.btn} btn-danger`} onClick={goBack}>
+          Back
+        </button>
+      </div>
+    </div>
+  );
+};
 
 const mapState = state => {
   return {
