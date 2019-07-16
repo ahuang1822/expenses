@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import styles from './styles.module.scss';
-import { updateDescription } from '../../store/expense';
+import { updateDescription } from 'store/expense';
 
 const Description = () => {
   const goBack = event => {

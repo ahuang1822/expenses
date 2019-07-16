@@ -1,0 +1,26 @@
+.app {
+  text-align: center;
+}
+
+.moneyBag {
+  height: 80px;
+}
+
+.header {
+  background-color: #222;
+  height: 150px;
+  padding: 20px;
+  color: white;
+}
+
+.btn {
+  align-content: center;
+  display: block;
+  margin: 5px auto;
+  padding: 7.5px;
+  border-radius: 5px;
+}
+
+.btn:hover {
+  cursor: pointer;
+}

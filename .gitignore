@@ -5,7 +5,8 @@
 
 /functions/node_modules/
 node_modules/
-
+/scripts
+/config
 # testing
 /coverage
 
