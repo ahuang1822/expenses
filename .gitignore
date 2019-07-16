@@ -5,7 +5,9 @@
 
 /functions/node_modules/
 node_modules/
-
+/config
+/scripts
+/.firebase
 # testing
 /coverage
 
