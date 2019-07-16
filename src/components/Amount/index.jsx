@@ -4,18 +4,18 @@ import { connect } from 'react-redux';
 import styles from './styles.module.scss';
 import { updateAmount } from 'store/expense';
 
-const Amount = () => {
-  const goHome = event => {
+class Amount extends Component {
+  goHome = event => {
     event.preventDefault();
     browserHistory.push('/');
   };
 
-  const goBack = event => {
+  goBack = event => {
     event.preventDefault();
     browserHistory.push('/description');
   };
 
-  const onSubmit = event => {
+  onSubmit = event => {
     event.preventDefault();
     const amount = event.target.amount.value;
     if (!amount) {
@@ -26,37 +26,39 @@ const Amount = () => {
     }
   };
 
-  return (
-    <div className={styles.amountContainer}>
-      <div className={styles.input}>
-        <form onSubmit={onSubmit}>
-          <label>
-            <h5 className={styles.heading}>Amount:</h5>
+  render() {
+    return (
+      <div className={styles.amountContainer}>
+        <div className={styles.input}>
+          <form onSubmit={this.onSubmit}>
+            <label>
+              <h5 className={styles.heading}>Amount:</h5>
+              <input
+                className={`${styles.input} form-control`}
+                type="number"
+                min="0.00"
+                max="10000.00"
+                step="0.01"
+                name="amount"
+                defaultValue={this.props.amount}
+              />
+            </label>
             <input
-              className={`${styles.input} form-control`}
-              type="number"
-              min="0.00"
-              max="10000.00"
-              step="0.01"
-              name="amount"
-              defaultValue={this.props.amount}
+              className={`${styles.btn} btn-success`}
+              type="submit"
+              value="Submit"
             />
-          </label>
-          <input
-            className={`${styles.input} btn btn-success`}
-            type="submit"
-            value="Submit"
-          />
-        </form>
+          </form>
+        </div>
+        <div className="home-button">
+          <button className={`${styles.btn} btn-dark`} onClick={this.goBack}>
+            Back
+          </button>
+        </div>
       </div>
-      <div className="home-button">
-        <button className={`${styles.btn} btn-dark`} onClick={goBack}>
-          Back
-        </button>
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 const mapState = state => {
   return {

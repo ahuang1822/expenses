@@ -1,4 +1,4 @@
-.confirmation {
+.confirmationContainer {
   height: 50%;
   left: 50%;
   position: absolute;
@@ -17,7 +17,8 @@
   align-content: center;
   display: block;
   margin: 5px auto;
-  padding: auto;
+  padding: 7.5px;
+  border-radius: 5px;
 }
 
 .input {

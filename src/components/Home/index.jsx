@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 import money from '../../assets/money-bag.png';
 import { updateSpreadsheetId } from 'store/expense';
-import { init, getSpreadsheetId } from '../../utils/auth';
+import { init, getSpreadsheetId } from 'utils/auth.js';
+import styles from './styles.module.scss';
 
 class Home extends Component {
   constructor(props) {
@@ -26,9 +27,9 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={money} className="App-logo" alt="logo" />
+      <div className={styles.app}>
+        <div className={styles.header}>
+          <img src={money} className={styles.moneyBag} alt="logo" />
           <h2 id="welcome-message">Welcome</h2>
         </div>
         <p className="App-intro">Keep Track of Your Money!</p>
@@ -36,27 +37,29 @@ class Home extends Component {
         <p id="loading">Loading...</p>
         <button
           id="authorize_button"
-          className="btn btn-success"
+          className={`${styles.btn} btn-success`}
           style={{ display: 'none' }}
         >
           Log In With Google
         </button>
         <button
           id="signout_button"
-          className="btn btn-failure"
+          className={`${styles.btn} btn-failure`}
           style={{ display: 'none' }}
         >
           Sign Out
         </button>
         <button
           id="add_expense_button"
-          className="btn btn-success"
+          className={`${styles.btn} btn-success`}
           style={{ display: 'none' }}
           onClick={this.onClick}
         >
           Add An Expense!
         </button>
-        <a id="spreadsheet-link">Check out your spreadsheet here!</a>
+        <a id="spreadsheet-link" className={styles.spreadsheetLink}>
+          Check out your spreadsheet here!
+        </a>
       </div>
     );
   }

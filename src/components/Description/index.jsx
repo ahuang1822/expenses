@@ -2,15 +2,15 @@ import React, { Component } from 'react';
 import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import styles from './styles.module.scss';
-import { updateDescription } from '../../store/expense';
+import { updateDescription } from 'store/expense';
 
-const Description = () => {
-  const goBack = event => {
+class Description extends Component {
+  goBack = event => {
     event.preventDefault();
     browserHistory.push('/');
   };
 
-  const onSubmit = event => {
+  onSubmit = event => {
     event.preventDefault();
     const description = event.target.description.value;
     if (!description) {
@@ -21,34 +21,36 @@ const Description = () => {
     }
   };
 
-  return (
-    <div className="descriptionContainer">
-      <div className={styles.input}>
-        <form onSubmit={onSubmit}>
-          <label>
-            <h5>Description:</h5>
+  render() {
+    return (
+      <div className={styles.descriptionContainer}>
+        <div className={styles.input}>
+          <form onSubmit={this.onSubmit}>
+            <label>
+              <h5>Description:</h5>
+              <input
+                className={`${styles.input} form-control`}
+                type="text"
+                name="description"
+                defaultValue={this.props.description}
+              />
+            </label>
             <input
-              className={`${styles.input} form-control`}
-              type="text"
-              name="description"
-              defaultValue={this.props.description}
+              className={`${styles.intput} ${styles.btn} btn-success`}
+              type="submit"
+              value="Submit"
             />
-          </label>
-          <input
-            className={`${styles.intput} ${styles.btn} btn-success`}
-            type="submit"
-            value="Submit"
-          />
-        </form>
+          </form>
+        </div>
+        <div className="home-button">
+          <button className={`${styles.btn} btn-dark`} onClick={this.goBack}>
+            Back
+          </button>
+        </div>
       </div>
-      <div className="home-button">
-        <button className={`${styles.btn} btn-dark`} onClick={goBack}>
-          Back
-        </button>
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 const mapState = state => {
   return {
