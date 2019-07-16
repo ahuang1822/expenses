@@ -1,0 +1,37 @@
+.amountContainer {
+  height: 50%;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50%;
+}
+
+.input {
+  align-content: center;
+  margin: 0 auto;
+  text-align: center;
+  vertical-align: middle;
+  width: 190px;
+}
+
+body {
+  background-color: whitesmoke;
+}
+
+.btn {
+  align-content: center;
+  display: block;
+  margin: 5px auto;
+  padding: 7.5px;
+  border-radius: 5px;
+}
+
+.heading {
+  margin: 2.5px;
+  text-align: center;
+}
+
+.spreadsheet-link {
+  display: none;
+}

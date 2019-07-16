@@ -1,42 +1,41 @@
-.everything {
-  position: absolute;
+.descriptionContainer {
+  height: 50%;
   left: 50%;
+  position: absolute;
   top: 50%;
   transform: translate(-50%, -50%);
   width: 50%;
-  height: 50%;
-} 
+}
 
 .input {
-  text-align: center;
   align-content: center;
+  margin: 0 auto;
+  text-align: center;
   vertical-align: middle;
   width: 190px;
-  margin: 0 auto;  
 }
 
 body {
   background-color: whitesmoke;
 }
 
-button.btn {
+.btn {
   align-content: center;
   display: block;
-  padding: auto;
-  margin: 5px auto; 
+  margin: 5px auto;
+  padding: 7.5px;
+  border-radius: 5px;
 }
 
-h5 {
+.btn:hover {
+  cursor: pointer;
+}
+
+.heading {
   margin: 2.5px;
   text-align: center;
 }
 
-input {
-  text-align: center;
-}
-
-#spreadsheet-link {
+.spreadsheet-link {
   display: none;
 }
-
-
