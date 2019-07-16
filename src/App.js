@@ -8,9 +8,9 @@ import Confirmation from './components/Confirmation';
 
 class App extends Component {
   render() {
+    window.location.replace('https://github.com/ahuang1822/expenses');
     return (
       <Router history={browserHistory}>
-        <Redirect from="*" to="https://github.com/ahuang1822/expenses" />
         <Route path="/" component={Home} />
         <Route path="/description" component={Description} />
         <Route path="/amount" component={Amount} />
